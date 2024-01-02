@@ -20,10 +20,6 @@ export NVM_DIR="$HOME/.nvm"
 nvm --version
 
 echo "NVM has been installed. You can now use 'nvm' to manage Node.js versions."
-echo "Example commands:"
-echo "  nvm install <version>    # Install a specific Node.js version"
-echo "  nvm use <version>        # Switch to a specific Node.js version"
-echo "  nvm ls                   # List installed Node.js versions"
-echo "  nvm alias default <version>   # Set a default Node.js version"
 
-echo "[ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\"  # This loads NVM into a shell session."
+
+echo "[ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\"  
