@@ -3,6 +3,9 @@
 if command -v node &>/dev/null; then
   echo "Node.js is already installed."
   exit 0
+else
+  echo "Failed to install Node.js."
+  exit 1
 fi
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
@@ -14,4 +17,4 @@ nvm install --lts
 nvm alias default $(nvm current)
 
 node --version
-npm --version (edited) 
+npm --version 
