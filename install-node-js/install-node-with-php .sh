@@ -1,17 +1,13 @@
 #!/bin/bash
 
-if command -v node &>/dev/null; then
-  echo "Node.js is already installed."
-  exit 0
-fi
+sudo apt update
 
-sudo apt-get update
-sudo apt-get install -y nodejs npm
+sudo apt install -y php php-cli php-fpm php-json php-common php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath
 
-if command -v node &>/dev/null; then
-  echo "Node.js installed successfully."
-else
-  echo "Failed to instnpm versions
-  
-node --version
-npm --version
+sudo systemctl start php7.4-fpm
+
+sudo systemctl enable php7.4-fpm
+
+php -v
+
+sudo systemctl status php7.4-fpm
