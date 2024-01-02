@@ -18,7 +18,7 @@ if [ "$install_nvm" = "y" ]; then
 fi
 
 # <------------------------------------------>
-
+yatharthc@webelight.co.in
 # install-node-using-nvm
 
 read -p "Do you want to install Node.js using NVM? (y/n): " install_node
