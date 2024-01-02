@@ -1,15 +1,32 @@
 #!/bin/bash
 
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 4B7C549A058F8B6B
+# Check if script is run as root or with sudo privileges
+if [ "$EUID" -ne 0 ]; then
+    echo "Please run this script as root or using sudo."
+    exit 1
+fi
 
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu $(lsb_release -sc)/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+# Import the MongoDB GPG key
+wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add -
 
-sudo apt-get update
+# Add the MongoDB repository
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/5.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-5.0.list
 
-sudo apt-get install -y mongodb-org
+# Update the package list
+apt update
 
-sudo systemctl start mongod
+# Install MongoDB
+apt install -y mongodb-org
 
-sudo systemctl enable mongod
+# Start MongoDB service
+service mongod start
 
-sudo systemctl status mongod
+# Enable MongoDB to start on boot
+systemctl enable mongod
+
+# Wait for MongoDB to start
+sleep 5
+
+# Display MongoDB version and status
+mongo --eval "printjson(db.version())"
+service mongod status
